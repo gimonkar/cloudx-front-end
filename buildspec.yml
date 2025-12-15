@@ -6,7 +6,8 @@ phases:
       nodejs: 18
     commands:
       - echo Installing dependencies
-      - npm install
+      - npm install --unsafe-perm=true
+      - chmod +x node_modules/.bin/react-scripts
 
   build:
     commands:
@@ -16,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo Uploading build to S3
-      - aws s3 sync build/ s3://employeeinfo-stack-reactfrontendbucket-2yz6cirkkmcr --delete
+      - if [ -d build ]; then aws s3 sync build/ s3://employeeinfo-stack-reactfrontendbucket-2yz6cirkkmcr --delete; else echo "Build folder not found"; exit 1; fi
 
 artifacts:
   files:
