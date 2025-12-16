@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const REACT_APP_BASE_URL="http://43.205.119.20:8080"
+const REACT_APP_BASE_URL="http://65.2.141.219:8080"
 
 function App() {
   const [employees, setEmployees] = useState([]);
